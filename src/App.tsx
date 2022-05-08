@@ -8,11 +8,9 @@ chrome.tabs.query(
     currentWindow: true,
   },
   (tabs) => {
-    console.log(tabs)
     chrome.scripting.executeScript({
       target: { tabId: tabs[0]?.id ?? 0 },
       func: function () {
-        console.log("test")
         document.body.style.backgroundColor = "white";
       },
       args: [],
