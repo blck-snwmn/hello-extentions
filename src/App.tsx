@@ -2,6 +2,24 @@ import { useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
 
+chrome.tabs.query(
+  {
+    active: true,
+    currentWindow: true,
+  },
+  (tabs) => {
+    console.log(tabs)
+    chrome.scripting.executeScript({
+      target: { tabId: tabs[0]?.id ?? 0 },
+      func: function () {
+        console.log("test")
+        document.body.style.backgroundColor = "white";
+      },
+      args: [],
+    });
+  }
+);
+
 function App() {
   const [count, setCount] = useState(0)
 
